@@ -8,10 +8,10 @@ fn main() {
     let input = include_str!("../input.txt");
 
     let output1 = part1(input);
-    dbg!(output1);
+    println!("Part 1 solution: {output1}");
 
     let output2 = part2(input);
-    dbg!(output2);
+    println!("Part 2 solution: {output2}");
 }
 
 #[cfg(test)]
