@@ -29,26 +29,17 @@ fn part1(input: &str) -> usize {
 }
 
 fn get_digit_from_str(slice: &[u8]) -> Option<usize> {
-    if slice.starts_with(b"one") {
-        Some(1)
-    } else if slice.starts_with(b"two") {
-        Some(2)
-    } else if slice.starts_with(b"three") {
-        Some(3)
-    } else if slice.starts_with(b"four") {
-        Some(4)
-    } else if slice.starts_with(b"five") {
-        Some(5)
-    } else if slice.starts_with(b"six") {
-        Some(6)
-    } else if slice.starts_with(b"seven") {
-        Some(7)
-    } else if slice.starts_with(b"eight") {
-        Some(8)
-    } else if slice.starts_with(b"nine") {
-        Some(9)
-    } else {
-        None
+    match slice {
+        [b'o', b'n', b'e', ..] => Some(1),
+        [b't', b'w', b'o', ..] => Some(2),
+        [b't', b'h', b'r', b'e', b'e', ..] => Some(3),
+        [b'f', b'o', b'u', b'r', ..] => Some(4),
+        [b'f', b'i', b'v', b'e', ..] => Some(5),
+        [b's', b'i', b'x', ..] => Some(6),
+        [b's', b'e', b'v', b'e', b'n', ..] => Some(7),
+        [b'e', b'i', b'g', b'h', b't', ..] => Some(8),
+        [b'n', b'i', b'n', b'e', ..] => Some(9),
+        _ => None
     }
 }
 
@@ -56,27 +47,27 @@ fn find_first_and_last_digits2(str: &[u8]) -> (usize, usize) {
     let mut first = None;
     let mut last = None;
 
-    for i in 0..str.len() {
+    let mut i = 0;
+    while i < str.len() {
         let c = str[i];
 
-        match c {
-            d if d.is_ascii_digit() => {
+        if c.is_ascii_digit() {
+            if first == None {
+                first = Some((c - b'0') as usize);
+            } else {
+                last = Some((c - b'0') as usize);
+            }
+        } else {
+            if let Some(d) = get_digit_from_str(&str[i..]) {
                 if first == None {
-                    first = Some((d - b'0') as usize);
+                    first = Some(d);
                 } else {
-                    last = Some((d - b'0') as usize);
-                };
-            },
-            _ => {
-                if let Some(d) = get_digit_from_str(&str[i..]) {
-                    if first == None {
-                        first = Some(d);
-                    } else {
-                        last = Some(d);
-                    };
+                    last = Some(d);
                 }
             }
         }
+
+        i += 1;
     }
 
     match last {
