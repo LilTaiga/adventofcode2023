@@ -7,3 +7,7 @@ Feel free to look around.
 From this folder, execute the command \
 `cargo run --bin dayX` \
 to run the solution from day `X`.
+
+Or you can run \
+`cargo test --bin dayX` \
+To run the examples for that day.
