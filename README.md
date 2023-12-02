@@ -11,3 +11,10 @@ to run the solution from day `X`.
 Or you can run \
 `cargo test --bin dayX` \
 To run the examples for that day.
+
+## My benchmarks
+
+|Days  | Part 1   | Part 2   |
+|------|----------|----------|
+|Day 1 | 197.94µs | 125.78µs |
+|Day 2 | 84.58µs  | 86.86µs  |
