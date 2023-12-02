@@ -7,11 +7,15 @@ use part2::*;
 fn main() {
     let input = include_str!("../input.txt");
 
+    let now = std::time::Instant::now();
     let output1 = part1(input);
-    println!("Part 1 solution: {output1}");
+    let elapsed = now.elapsed();
+    println!("Part 1 solution: {output1} -- Took {elapsed:?}");
 
+    let now = std::time::Instant::now();
     let output2 = part2(input);
-    println!("Part 2 solution: {output2}");
+    let elapsed = now.elapsed();
+    println!("Part 2 solution: {output2} -- Took {elapsed:?}");
 }
 
 #[cfg(test)]
