@@ -1,34 +1,46 @@
-pub fn part1(input: &str) -> usize {
-    input.lines()
-        .map(|line| {
-            let mut game = line.split(':');
-            
-            let game_id = game.next().unwrap()
-                .split(' ').skip(1).next().unwrap()
-                .parse::<usize>().unwrap();
+#[allow(dead_code)]
+struct Game {
+    id: usize,
+    cubes: (usize, usize, usize),
+}
 
-            
-            let is_possible = game.next().unwrap()
-                .split(';').map(|game| {
-                    let cubes = game.split(',');
-                    
-                    for cube in cubes {
-                        let cube = cube.trim();
-                        let (cube_num, cube_color) = cube.split_once(' ').unwrap();
+fn parse(input: &str) -> impl Iterator<Item = Game> + '_ {
+    input.lines().map(|str| {
+        let (id, games) = str.split_once(": ").unwrap();
+        let (_, id) = id.split_once(' ').unwrap();
+        let id: usize = id.parse().unwrap();
 
-                        let cube_num = cube_num.parse::<usize>().unwrap();
-                        match (cube_num, cube_color) {
-                            (n, "red") if n <= 12 => continue,
-                            (n, "green") if n <= 13 => continue,
-                            (n, "blue") if n <= 14 => continue,
-                            _ => return false,
-                        }
+        let cubes = games
+            .split("; ")
+            .map(|game| {
+                game.split(", ").fold((0, 0, 0), |(r, g, b), cube| {
+                    let (num, color) = cube.split_once(' ').unwrap();
+                    let num: usize = num.parse().unwrap();
+
+                    match (num, color) {
+                        (n, "red") => (r.max(n), g, b),
+                        (n, "green") => (r, g.max(n), b),
+                        (n, "blue") => (r, g, b.max(n)),
+                        _ => panic!("Something went very wrong!"),
                     }
+                })
+            })
+            .fold((0, 0, 0), |(max_r, max_g, max_b), (r, g, b)| {
+                (max_r.max(r), max_g.max(g), max_b.max(b))
+            });
 
-                    true
-                }).all(|x| x == true);
+        Game { id, cubes }
+    })
+}
 
-            (game_id, is_possible)
+pub fn part1(input: &str) -> usize {
+    parse(input)
+        .filter_map(|game| {
+            if game.cubes.0 <= 12 && game.cubes.1 <= 13 && game.cubes.2 <= 14 {
+                Some(game.id)
+            } else {
+                None
+            }
         })
-        .filter_map(|(id, bool)| if bool { Some(id) } else { None }).sum()
+        .sum()
 }
