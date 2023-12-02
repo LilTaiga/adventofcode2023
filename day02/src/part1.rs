@@ -1,5 +1,5 @@
 pub fn part1(input: &str) -> usize {
-    let possible_games = input.lines()
+    input.lines()
         .map(|line| {
             let mut game = line.split(':');
             
@@ -29,7 +29,6 @@ pub fn part1(input: &str) -> usize {
                 }).all(|x| x == true);
 
             (game_id, is_possible)
-        });
-
-    possible_games.filter_map(|(id, bool)| if bool { Some(id) } else { None }).sum()
+        })
+        .filter_map(|(id, bool)| if bool { Some(id) } else { None }).sum()
 }
