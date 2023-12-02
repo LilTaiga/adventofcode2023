@@ -6,13 +6,14 @@ Feel free to look around.
 ## Running the solutions
 From this folder, execute the command \
 `cargo run --bin dayX` \
-to run the solution from day `X`.
+to run the solution for day `X`.
 
-Or you can run \
+You can also execute \
 `cargo test --bin dayX` \
-To run the examples for that day.
+to verify the tests for that day.
 
 ## My benchmarks
+I execute `cargo run --bin dayX --release` 5 times and take the average for each day. 
 
 |Days  | Part 1   | Part 2   |
 |------|----------|----------|
