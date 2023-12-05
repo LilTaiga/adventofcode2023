@@ -15,7 +15,9 @@ to verify the tests for that day.
 ## My benchmarks
 I execute `cargo run --bin dayX --release` 5 times and take the average for each day. 
 
-|Days  | Part 1   | Part 2   |
-|------|----------|----------|
-|Day 1 | 197.94µs | 125.78µs |
-|Day 2 | 84.58µs  | 86.86µs  |
+|Days   | Part 1   | Part 2   |
+|------ |----------|----------|
+|Day 01 | 197.94µs | 125.78µs |
+|Day 02 | 84.58µs  | 86.86µs  |
+|       |          |          |
+|Day 04 | 388.12µs | 926.9µs  |
