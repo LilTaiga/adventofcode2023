@@ -9,13 +9,13 @@ fn find_digit(slice: char) -> Option<usize> {
         '7' => Some(7),
         '8' => Some(8),
         '9' => Some(9),
-        _ => None
+        _ => None,
     }
 }
 
 pub fn part1(input: &str) -> usize {
     let mut sum = 0;
-    
+
     for line in input.lines() {
         let first = line.chars().find_map(find_digit).unwrap();
         let last = line.chars().rev().find_map(find_digit).unwrap();

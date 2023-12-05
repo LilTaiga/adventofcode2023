@@ -9,7 +9,7 @@ fn find_digit(slice: &[u8]) -> Option<usize> {
         [b's', b'e', b'v', b'e', b'n', ..]  | [b'7', ..] => Some(7),
         [b'e', b'i', b'g', b'h', b't', ..]  | [b'8', ..] => Some(8),
         [b'n', b'i', b'n', b'e', ..]        | [b'9', ..] => Some(9),
-        _ => None
+        _ => None,
     }
 }
 
