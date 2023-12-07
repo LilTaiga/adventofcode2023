@@ -19,7 +19,7 @@ impl Race {
     }
 }
 
-pub fn part2(input: &str) -> usize {
+fn parse(input: &str) -> Race {
     let (time_str, dist_str) = input.split_once('\n').unwrap();
 
     let time_str = time_str
@@ -35,9 +35,13 @@ pub fn part2(input: &str) -> usize {
 
     Race {
         time: time_str.parse().unwrap(),
-        distance: dist_str.parse().unwrap(),
+        distance: dist_str.parse().unwrap()
     }
-    .num_of_wins()
+}
+
+pub fn part2(input: &str) -> usize {
+    parse(input)
+        .num_of_wins()
 }
 
 #[cfg(test)]

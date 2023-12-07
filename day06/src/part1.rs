@@ -19,7 +19,7 @@ impl Race {
     }
 }
 
-pub fn part1(input: &str) -> usize {
+fn parse(input: &str) -> impl Iterator<Item = Race> + '_ {
     let (time_str, dist_str) = input.split_once('\n').unwrap();
 
     time_str
@@ -30,6 +30,10 @@ pub fn part1(input: &str) -> usize {
             time: time.parse().unwrap(),
             distance: distance.parse().unwrap(),
         })
+}
+
+pub fn part1(input: &str) -> usize {
+    parse(input)
         .map(|race| race.num_of_wins())
         .product()
 }
