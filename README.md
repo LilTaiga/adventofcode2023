@@ -21,3 +21,5 @@ I execute `cargo run --bin dayX --release` 5 times and take the average for each
 |Day 02 | 84.58µs  | 86.86µs  |
 |Day 03 |          |          |
 |Day 04 | 388.12µs | 926.9µs  |
+|Day 05 |          |          |
+|Day 06 | 2.7µs    | 24.96ms  |
